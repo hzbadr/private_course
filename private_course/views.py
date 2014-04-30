@@ -17,4 +17,4 @@ class PrivateCourseListView(ListView):
 class MemberCreateView(CreateView):
   model = Member
   form_class = MemberForm
-  success_url = reverse_lazy('home')
+  # success_url = reverse_lazy('home')
