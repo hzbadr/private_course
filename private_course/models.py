@@ -16,6 +16,16 @@ class PrivateCourse(models.Model):
   capacity = models.IntegerField('Capacity')
   hours = models.IntegerField('Hours')
 
+
+  def is_full(self):
+    return self.capacity <= self.members.count()
+
+  def remaining(self):
+    try:
+      return self.capacity - self.members.count()
+    except:
+      return 0
+
   def __unicode__(self):
     return self.title
 
