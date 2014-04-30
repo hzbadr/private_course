@@ -1,1 +1,5 @@
 <h1>Hello Member</h1>
+<form action="." method="post">{% csrf_token %}
+{{form.as_p}}
+<button type='submit'>Submit</button>
+</form>

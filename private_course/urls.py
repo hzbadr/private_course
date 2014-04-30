@@ -13,9 +13,8 @@ urlpatterns = patterns('',
       view = PrivateCourseDetailView.as_view(),
       name = 'private_course_detail'
      ),
-
     url(
-      regex = '^(?P<pk>\d+)/register/',
+      regex = '^(?P<course_id>\d+)/register/',
       view = MemberCreateView.as_view(),
       name = 'private_course_member_create'
       )

@@ -55,3 +55,5 @@ class Member(models.Model):
   def __unicode__(self):
     return self.name
 
+  def create_membership(self, course, category):
+    return Membership.objects.create(member=self, course=course, category=category)

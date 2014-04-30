@@ -1,3 +1,7 @@
+from django.shortcuts import get_object_or_404
+
+from django.core.urlresolvers import reverse_lazy
+
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView
 
@@ -17,4 +21,21 @@ class PrivateCourseListView(ListView):
 class MemberCreateView(CreateView):
   model = Member
   form_class = MemberForm
-  # success_url = reverse_lazy('home')
+  success_url = reverse_lazy('private_course_list')
+
+  def get(self, request, *args, **kwargs):
+    get_object_or_404(PrivateCourse, pk=kwargs['course_id'])
+    return super(MemberCreateView, self).get(request, *args, **kwargs)
+
+  def post(self, request, *args, **kwargs):
+    course = get_object_or_404(PrivateCourse, pk=kwargs['course_id'])
+    category = kwargs.get('category', 'group')
+    form_class = self.get_form_class()
+    form = form_class(self.request.POST, None)
+    
+    if form.is_valid():
+      member = form.save()
+      member.create_membership(course=course, category=category)
+      return self.form_valid(form)
+    else:
+      return self.form_invalid(form)
