@@ -51,7 +51,7 @@ class Member(models.Model):
   name = models.CharField('Name', max_length=255)
   email = models.EmailField('Email', max_length=255)
   country = models.CharField('Country', max_length=255, choices=COUNTRIES)
-  description = models.TextField('Description')
+  description = models.TextField('You need a private lesson about:')
   dob = models.DateField('Date of Birth')
   skype = models.CharField('Skype', max_length=255)
   specialization = models.CharField('Specialization', max_length=255, choices=SPECIALIZATION)

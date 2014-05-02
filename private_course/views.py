@@ -47,4 +47,6 @@ class MemberCreateView(CreateView):
       member.create_membership(course=course, category=category)
       return self.form_valid(form)
     else:
+      self.object = form.instance
+      print(form.errors)
       return self.form_invalid(form)
