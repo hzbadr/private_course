@@ -4,7 +4,11 @@ from django.db import models
 
 COUNTRIES = (('a', 'b'),)
 PAYMENTS = (('1', '2'),)
-CATEGORIES = (('Individual', 'Group'),)
+CATEGORIES = (
+  (0, 'Individual'),
+  (1, 'Group'),
+)
+
 SPECIALIZATION = (('a', 'a'),)
 
 
@@ -44,6 +48,7 @@ class Membership(models.Model):
   
 class Member(models.Model):
   name = models.CharField('Name', max_length=255)
+  email = models.EmailField('Email', max_length=255)
   country = models.CharField('Country', max_length=255, choices=COUNTRIES)
   description = models.TextField('Description')
   dob = models.DateField('Date of Birth')

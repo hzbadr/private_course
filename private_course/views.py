@@ -17,11 +17,21 @@ class PrivateCourseListView(ListView):
   model = PrivateCourse
   queryset = PrivateCourse.objects.filter(active=True)
 
+  def get_context_data(self, **kwargs):
+    context = super(PrivateCourseListView, self).get_context_data(**kwargs)
+    context['category'] = self.request.GET.get('category', '0')
+    return context
 
 class MemberCreateView(CreateView):
   model = Member
   form_class = MemberForm
   success_url = reverse_lazy('private_course_list')
+
+  def get_context_data(self, **kwargs):
+    context = super(MemberCreateView, self).get_context_data(**kwargs)
+    context['category'] = self.request.GET.get('category', '0')
+    import pdb; pdb.set_trace
+    return context
 
   def get(self, request, *args, **kwargs):
     get_object_or_404(PrivateCourse, pk=kwargs['course_id'])
@@ -29,7 +39,7 @@ class MemberCreateView(CreateView):
 
   def post(self, request, *args, **kwargs):
     course = get_object_or_404(PrivateCourse, pk=kwargs['course_id'])
-    category = kwargs.get('category', 'group')
+    category = self.request.GET.get('category', '0')
     form_class = self.get_form_class()
     form = form_class(self.request.POST, None)
     
