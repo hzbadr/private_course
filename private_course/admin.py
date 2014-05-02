@@ -1,14 +1,17 @@
 from .models import *
 from django.contrib import admin
 
+class MembershipInline(admin.TabularInline):
+    model = Membership
 
 class PrivateCourseAdmin(admin.ModelAdmin):
   list_display = ('title', 'description', 'position', 'active', 'capacity', 'hours')
   list_editable = ('position', 'active', 'capacity', 'hours')
   list_filter = ('active',)
-  # list_select_related = ('members',)
   ordering = ('position', 'capacity')
   search_fields = ('title',)
+
+  inlines = (MembershipInline,)
 
 class MemberAdmin(admin.ModelAdmin):
     pass
