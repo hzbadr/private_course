@@ -5,8 +5,8 @@ from django.db import models
 COUNTRIES = (('a', 'b'),)
 PAYMENTS = (('1', '2'),)
 CATEGORIES = (
-  (0, 'Individual'),
-  (1, 'Group'),
+  ('0', 'Individual'),
+  ('1', 'Group'),
 )
 
 SPECIALIZATION = (('a', 'a'),)

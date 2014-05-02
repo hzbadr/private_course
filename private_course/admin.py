@@ -14,10 +14,10 @@ class PrivateCourseAdmin(admin.ModelAdmin):
   inlines = (MembershipInline,)
 
 class MemberAdmin(admin.ModelAdmin):
-    pass
+  list_display = ('name', 'email', 'country', 'dob', 'payment')
 
 class MembershipAdmin(admin.ModelAdmin):
-    pass
+  list_display = ('member', 'course', 'category')
 
 admin.site.register(PrivateCourse, PrivateCourseAdmin)
 admin.site.register(Member, MemberAdmin)
