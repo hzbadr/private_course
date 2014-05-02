@@ -1,6 +1,57 @@
-<h1>Hello Member</h1>
-<form action="." method="post">{% csrf_token %}
-{{form.as_p}}
-<input type="hidden" name='category' value='{{ category }}'/>
-<button type='submit'>Submit</button>
-</form>
+<div class="registration preview-registration">
+  <div class="well">
+    <h2>Stanford Online Signup</h2>
+    <form action="." method="post" class="form-horizontal">
+      <fieldset>
+        {% csrf_token %}
+        <input type="hidden" name='category' value='{{ category }}'/>
+        <div class="control-group">
+          <label for="id_username" class="control-label">{{form.name.label}}:</label>
+            <div class="controls">
+            {{ form.name }}
+            <span class="help-block">Your Full Name</span>
+          </div>
+        </div>
+        <div class="control-group">
+          <label for="id_email" class="control-label">{{form.email.label}}:</label>
+          <div class="controls">
+            {{ form.email }}
+          </div>
+        </div>
+        <div class="control-group">
+          <label for="id_email" class="control-label">{{form.skype.label}}:</label>
+          <div class="controls">
+            {{ form.skype }}
+          </div>
+        </div>
+        <div class="control-group">
+          <label for="id_first_name" class="control-label">{{form.country.label}}:</label>
+          <div class="controls">
+            {{ form.country }}
+          </div>
+        </div>
+        <div class="control-group">
+          <label for="id_last_name" class="control-label">{{form.dob.label}}:</label>
+          <div class="controls">
+            {{ form.dob }}
+          </div>
+        </div>
+        <div class="control-group">
+          <label for="id_last_name" class="control-label">{{form.specialization.label}}:</label>
+          <div class="controls">
+            {{ form.specialization }}
+          </div>
+        </div>
+        <div class="control-group">
+          <label for="id_last_name" class="control-label">{{form.payment.label}}:</label>
+          <div class="controls">
+            {{ form.payment }}
+          </div>
+        </div>
+      </fieldset>
+      <div class="form-actions">
+        <input type="submit" value="Register" class="btn btn-primary btn-large" /> 
+      </div>
+    </form>
+  </div>
+</div>

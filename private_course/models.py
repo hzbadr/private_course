@@ -42,6 +42,7 @@ class Membership(models.Model):
   member = models.ForeignKey('Member')
   course = models.ForeignKey(PrivateCourse)
   category = models.CharField('Category', max_length=255, choices=CATEGORIES)
+  # unique_together = ('member', 'course')
 
   def __unicode__(self):
     return " >> ".join([self.member.name, self.course.title])
