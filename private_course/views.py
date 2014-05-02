@@ -30,7 +30,6 @@ class MemberCreateView(CreateView):
   def get_context_data(self, **kwargs):
     context = super(MemberCreateView, self).get_context_data(**kwargs)
     context['category'] = self.request.GET.get('category', '0')
-    import pdb; pdb.set_trace
     return context
 
   def get(self, request, *args, **kwargs):
@@ -39,7 +38,7 @@ class MemberCreateView(CreateView):
 
   def post(self, request, *args, **kwargs):
     course = get_object_or_404(PrivateCourse, pk=kwargs['course_id'])
-    category = self.request.GET.get('category', '0')
+    category = self.request.POST.get('category', '0')
     form_class = self.get_form_class()
     form = form_class(self.request.POST, None)
     

@@ -1,5 +1,6 @@
 <h1>Hello Member</h1>
 <form action="." method="post">{% csrf_token %}
 {{form.as_p}}
+<input type="hidden" name='category' value='{{ category }}'/>
 <button type='submit'>Submit</button>
 </form>
